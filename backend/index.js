@@ -2,8 +2,14 @@ import express from 'express';
 import axios from 'axios';
 import { URL } from 'url';
 import dotenv from 'dotenv';
+import cors from 'cors';
+
 
 const app = express();
+app.use(cors({
+    origin: 'http://localhost:5173', // Explicitly specify the allowed origin
+    credentials: true
+}));
 dotenv.config()
 const PORT = process.env.PORT;
 
