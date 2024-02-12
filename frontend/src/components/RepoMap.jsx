@@ -1,21 +1,14 @@
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
+import { selectRepoData } from "../store/selectors";
 
 function RepoMap() {
-    const { structure, commits, openIssues, closedIssues, openPullRequests, closedPullRequests, repoMetrics, dependencies } = useSelector((state) => ({
-        structure: state.structure,
-        commits: state.commits,
-        openIssues: state.openIssues,
-        closedIssues: state.closedIssues,
-        openPullRequests: state.openPullRequests,
-        closedPullRequests: state.closedPullRequests,
-        repoMetrics: state.repoMetrics,
-        dependencies: state.dependencies
-    }))
-
-    console.log(structure, commits, openIssues, closedIssues, openPullRequests, closedPullRequests, repoMetrics, dependencies)
+    const { structure } = useSelector(selectRepoData);
+    console.log(structure)
     return (
-        <div>RepoMap</div>
-    )
+        <>
+            <div className="font-bold">Repo Map</div>
+        </>
+    );
 }
 
-export default RepoMap
+export default RepoMap;

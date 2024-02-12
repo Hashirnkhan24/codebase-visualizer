@@ -20,26 +20,13 @@ function RepoInput() {
             })
             const data = await response.json()
             if(response.ok){
+                console.log(data)
                 dispatch(setRepoData(data))
                 navigate('/repo-map')
             }
         }
         fetchRepoData()
     }
-
-    // const renderFolderStructure = (structure) => {
-    //     return structure.map((item, index) => (
-    //         <div key={index}>
-    //             <p>{item.name}</p>
-    //             {item.type === 'dir' && renderFolderStructure(item.structure)}
-    //             {item.type === 'file' && (
-    //                 <a href={item.downloadUrl} target="_blank" rel="noopener noreferrer">
-    //                     Download
-    //                 </a>
-    //             )}
-    //         </div>
-    //     ));
-    // };
 
     return (
         <div className="flex flex-col gap-4 h-screen">
@@ -58,21 +45,6 @@ function RepoInput() {
                     Visualize
                 </button>
             </form>
-            {/* <div className="bg-gray-200">
-                    {folderStructure.length > 0 ? renderFolderStructure(folderStructure) : <p>No folder structure available</p>}
-            </div>
-            <div className="bg-gray-200">
-                { commitHistory.length > 0 
-                    ? commitHistory.map((commit, index) => (
-                        <div key={index}>
-                            <div>{commit.message}</div>
-                            <div>{commit.author}</div>
-                            <div>{commit.date}</div>
-                        </div>
-                    ))
-                    : <p>No commit History available</p>
-                }
-            </div> */}
 </div>
 
     )
