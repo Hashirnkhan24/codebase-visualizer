@@ -1,14 +1,17 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { setRepoData } from "../store/repoSlice"
+import { useNavigate } from "react-router-dom"
 
 function RepoInput() {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [repoUrl, setRepoUrl] = useState('')
-    const [commitHistory, setCommitHistory] = useState([])
-    const [folderStructure, setFolderStructure] =useState([])
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const fetchRepoData = async() => {
-            const response = await fetch(`http://localhost:3000/fetch-repo-structure-and-commits`,{
+            const response = await fetch(`http://localhost:3000/fetch-repo-data`,{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -17,26 +20,26 @@ function RepoInput() {
             })
             const data = await response.json()
             if(response.ok){
-                setFolderStructure(data.structure)
-                setCommitHistory(data.commits)
+                dispatch(setRepoData(data))
+                navigate('/repo-map')
             }
         }
         fetchRepoData()
     }
 
-    const renderFolderStructure = (structure) => {
-        return structure.map((item, index) => (
-            <div key={index}>
-                <p>{item.name}</p>
-                {item.type === 'dir' && renderFolderStructure(item.structure)}
-                {item.type === 'file' && (
-                    <a href={item.downloadUrl} target="_blank" rel="noopener noreferrer">
-                        Download
-                    </a>
-                )}
-            </div>
-        ));
-    };
+    // const renderFolderStructure = (structure) => {
+    //     return structure.map((item, index) => (
+    //         <div key={index}>
+    //             <p>{item.name}</p>
+    //             {item.type === 'dir' && renderFolderStructure(item.structure)}
+    //             {item.type === 'file' && (
+    //                 <a href={item.downloadUrl} target="_blank" rel="noopener noreferrer">
+    //                     Download
+    //                 </a>
+    //             )}
+    //         </div>
+    //     ));
+    // };
 
     return (
         <div className="flex flex-col gap-4 h-screen">
@@ -55,7 +58,7 @@ function RepoInput() {
                     Visualize
                 </button>
             </form>
-            <div className="bg-gray-200">
+            {/* <div className="bg-gray-200">
                     {folderStructure.length > 0 ? renderFolderStructure(folderStructure) : <p>No folder structure available</p>}
             </div>
             <div className="bg-gray-200">
@@ -69,7 +72,7 @@ function RepoInput() {
                     ))
                     : <p>No commit History available</p>
                 }
-            </div>
+            </div> */}
 </div>
 
     )

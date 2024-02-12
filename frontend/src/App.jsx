@@ -1,11 +1,16 @@
 import RepoInput from "./components/RepoInput"
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import RepoMap from "./components/RepoMap"
 function App() {
 
   return (
     <>
-      <h1 className='font-mono text-3xl fomt-bold'>Repo Map</h1>
-      <RepoInput />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<RepoInput />} ></Route>
+          <Route path="/repo-map" element={<RepoMap />} ></Route>
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
