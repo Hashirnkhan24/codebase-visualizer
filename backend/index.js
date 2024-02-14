@@ -149,7 +149,7 @@ app.post('/fetch-repo-data', async (req, res) => {
             const repoName = pathParts[1];
             const branch = pathParts[3] || 'main';
     
-            const [structure, commits, openIssues, closedIssues, openPullRequests, closedPullRequests, repoMetrics, dependencies] = await Promise.all([
+            const [structure, commits, openIssues, closedIssues, openPullRequests, closedPullRequests, repoMetrics, dependencies,] = await Promise.all([
                 fetchFolderStructure(owner, repoName, branch),
                 fetchCommitHistory(owner, repoName, branch),
                 fetchIssues(owner, repoName, 'open'),
@@ -170,6 +170,9 @@ app.post('/fetch-repo-data', async (req, res) => {
                 closedPullRequests,
                 repoMetrics, 
                 dependencies,
+                owner,
+                repoName,
+                branch
             });
         } catch (error) {
             console.error('Error fetching repository data:', error.message);

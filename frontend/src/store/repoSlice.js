@@ -9,6 +9,9 @@ const initialState = {
     closedPullRequests : [],
     repoMetrics: {},
     dependencies: {},
+    owner: '',
+    repoName: '',
+    branch: '',
 }
 export const repoSlice = createSlice({
     name: 'repo',
@@ -24,7 +27,10 @@ export const repoSlice = createSlice({
                 openPullRequests: action.payload.openPullRequests,
                 closedPullRequests: action.payload.closedPullRequests,
                 repoMetrics: action.payload.repoMetrics,
-                dependencies: action.payload.dependencies
+                dependencies: action.payload.dependencies,
+                owner: action.payload.owner,
+                repoName: action.payload.repoName,
+                branch: action.payload.branch,
             };
         }
     }

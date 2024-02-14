@@ -13,6 +13,9 @@ export const selectRepoData = createSelector(
         openPullRequests: state.openPullRequests,
         closedPullRequests: state.closedPullRequests,
         repoMetrics: state.repoMetrics,
-        dependencies: state.dependencies
+        dependencies: state.dependencies,
+        owner: state.owner,
+        repoName: state.repoName,
+        branch: state.branch,
     })
 );
