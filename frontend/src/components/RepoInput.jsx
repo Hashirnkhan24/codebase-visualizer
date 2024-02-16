@@ -68,7 +68,7 @@ function RepoInput() {
                     </button>
                     </div>
                 </form>
-                <div className="flex flex-col gap-4 items-center justify-center h-screen bg-gradient-to-tr from-slate-800 via-slate-700 to-slate-800">
+                <div className=" h-screen bg-gradient-to-tr from-slate-800 via-slate-700 to-slate-800">
                     <div className="flex flex-col gap-4 max-w-2xl mx-auto p-8 md:p-12  lg:p-16">
                         <ul className=" text-lg text-gray-100 gap-2 list-none">
                             <li className=" border border-slate-200 shadow-md p-3 my-2"><span className="font-medium">Visualize Structure:</span> See your code's organization at a glance. Understand how files and folders are interconnected.</li>
