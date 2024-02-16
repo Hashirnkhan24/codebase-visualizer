@@ -4,7 +4,9 @@ import { URL } from 'url';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import z from 'zod';
+import path from 'path';
 
+const __dirname = path.resolve()
 const app = express();
 app.use(cors({
     origin: 'http://localhost:5173',
@@ -184,6 +186,13 @@ app.post('/fetch-repo-data', async (req, res) => {
         })
     }
 });
+
+app.use(express.static(path.join(__dirname, '/frontend/dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'))
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
