@@ -54,7 +54,7 @@ function RepoInput() {
                     <p className="text-lg text-center text-gray-600 md:text-xl">
                         Paste your repo link to instantly explore its code structures and relationships.
                     </p>
-                    <div className="flex items-center justify-center gap-2">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
                         <label htmlFor="Repo Link" className="p-3 text-lg font-medium">Repo Link:</label>
                         <input 
                             type="text" 
@@ -71,12 +71,12 @@ function RepoInput() {
                 <div className="flex flex-col gap-4 items-center justify-center h-screen bg-gradient-to-tr from-slate-800 via-slate-700 to-slate-800">
                     <div className="flex flex-col gap-4 max-w-2xl mx-auto p-8 md:p-12  lg:p-16">
                         <ul className=" text-lg text-gray-100 gap-2 list-none">
-                            <li className="max-w-full border border-slate-200 shadow-md p-3 my-2"><span className="font-medium">Visualize Structure:</span> See your code's organization at a glance. Understand how files and folders are interconnected.</li>
-                            <li className="max-w-full border border-slate-200 shadow-md p-3 my-2"><span className="font-medium">Chart Your Commit History:</span> Dive into the evolution of your codebase through commit graphs and statistics.</li>
-                            <li className="max-w-full border border-slate-200 shadow-md p-3 my-2"><span className="font-medium">Measure Repo Health:</span> Understand your repo's popularity and engagement by visualizing watchers, forks, and stars.</li>
-                            <li className="max-w-full border border-slate-200 shadow-md p-3 my-2"><span className="font-medium">Stay on Top of Issues and Pull Requests:</span> Get visual breakdowns of open and closed issues and pull requests.</li>
-                            <li className="max-w-full border border-slate-200 shadow-md p-3 my-2"><span className="font-medium">Uncover Dependencies:</span> Gain insights into your project's external dependencies and development dependencies.</li>
-                            <li className="max-w-full border text-black border-slate-200 bg-red-100 shadow-md p-3 my-2"><span className="font-medium">Note:</span> Some repositories cannot be visualized due to access restrictions and rate limiting.</li>
+                            <li className=" border border-slate-200 shadow-md p-3 my-2"><span className="font-medium">Visualize Structure:</span> See your code's organization at a glance. Understand how files and folders are interconnected.</li>
+                            <li className=" border border-slate-200 shadow-md p-3 my-2"><span className="font-medium">Chart Your Commit History:</span> Dive into the evolution of your codebase through commit graphs and statistics.</li>
+                            <li className=" border border-slate-200 shadow-md p-3 my-2"><span className="font-medium">Measure Repo Health:</span> Understand your repo's popularity and engagement by visualizing watchers, forks, and stars.</li>
+                            <li className=" border border-slate-200 shadow-md p-3 my-2"><span className="font-medium">Stay on Top of Issues and Pull Requests:</span> Get visual breakdowns of open and closed issues and pull requests.</li>
+                            <li className=" border border-slate-200 shadow-md p-3 my-2"><span className="font-medium">Uncover Dependencies:</span> Gain insights into your project's external dependencies and development dependencies.</li>
+                            <li className=" border text-black border-slate-200 bg-red-100 shadow-md p-3 my-2"><span className="font-medium">Note:</span> Some repositories cannot be visualized due to access restrictions and rate limiting.</li>
                         </ul>
                     </div>
                 </div>
