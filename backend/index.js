@@ -13,7 +13,7 @@ app.use(cors({
 dotenv.config();
 const PORT = process.env.PORT;
 app.use(express.json());
-const URLSchema = z.string().url();
+const URLSchema = z.string();
 
 
 async function fetchCommitHistory(owner, repoName, branch) {
