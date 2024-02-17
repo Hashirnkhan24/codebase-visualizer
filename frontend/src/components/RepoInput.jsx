@@ -76,7 +76,7 @@ function RepoInput() {
                     </div>
                 </form>
                 <div className=" h-screen bg-gradient-to-tr from-slate-800 via-slate-700 to-slate-800">
-                    <div className="flex flex-col gap-4 max-w-2xl mx-auto p-8 md:p-12  lg:p-16">
+                    <div className="flex max-h-full flex-col gap-4 max-w-2xl mx-auto p-8 md:p-12  lg:p-16">
                         <ul className=" text-lg text-gray-100 gap-2 list-none">
                             <li className=" border border-slate-200 shadow-md p-3 my-2"><span className="font-medium">Visualize Structure:</span> See your code's organization at a glance. Understand how files and folders are interconnected.</li>
                             <li className=" border border-slate-200 shadow-md p-3 my-2"><span className="font-medium">Chart Your Commit History:</span> Dive into the evolution of your codebase through commit graphs and statistics.</li>
