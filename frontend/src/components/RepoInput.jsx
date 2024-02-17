@@ -29,13 +29,8 @@ function RepoInput() {
                     setLoading(false)
                     navigate('/repo-map');
                 } else {
-                    if (response.status === 500) {
                         setLoading(false)
                         navigate('/error')
-                    } else {
-                        setLoading(false)
-                        navigate('/error')
-                    }
                 }
             } catch (error) {
                 setLoading(false)
