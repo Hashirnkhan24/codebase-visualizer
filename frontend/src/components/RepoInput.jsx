@@ -9,9 +9,11 @@ function RepoInput() {
     const navigate = useNavigate()
     const [repoUrl, setRepoUrl] = useState('')
     const currentYear = new Date().getFullYear();
+    const [loading, setLoading] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true)
         const fetchRepoData = async () => {
             try {
                 const response = await fetch(`http://localhost:3000/fetch-repo-data`, {
@@ -24,15 +26,19 @@ function RepoInput() {
                 const data = await response.json();
                 if (response.ok) {
                     dispatch(setRepoData(data));
+                    setLoading(false)
                     navigate('/repo-map');
                 } else {
                     if (response.status === 500) {
+                        setLoading(false)
                         navigate('/error')
                     } else {
+                        setLoading(false)
                         navigate('/error')
                     }
                 }
             } catch (error) {
+                setLoading(false)
                 navigate('/error')
             }
         };
@@ -46,6 +52,7 @@ function RepoInput() {
                     <BsMapFill className="w-8 h-8 text-green-600" />
                     <h1 className="font-semibold text-3xl text-black self-center">Repo Map</h1>
             </nav>
+
             <div className="grid grid-cols-1 md:grid-cols-2 h-screen items-center">
             <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center items gap-4 bg-gradient-to-tr from-green-100 via-white to-green-100 h-screen" >
                     <h2 className="text-3xl font-bold text-center text-gray-800">
@@ -64,7 +71,7 @@ function RepoInput() {
                             className="border-gray-400 active:border-gray-700 p-3 border rounded-sm"
                         />
                         <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-sm">
-                        Visualize
+                        {loading ? "Loading..." : "Visualize"}
                     </button>
                     </div>
                 </form>

@@ -60,32 +60,42 @@ function RepoMap() {
                 {/* Folder Structure */}
                 <div className="font-md max-h-full flex flex-col justify-start items-start p-4 bg-white text-lg md:mt-5 md:ml-2 shadow-md md:mx-0 w-full md:max-w-72 mb-2">
                 <h1 className="font-semibold text-2xl text-slate-800 mb-3 self-center md:self-start text-center">Folder Structure</h1>
-                    {structure.map((node, index) => (
+                    {structure ? structure.map((node, index) => (
                         <TreeNode key={index} node={node} />
-                    ))}
+                    )) : <div className="text-center w-full font-medium text-lg bg-red-200 p-2 my-2">Cannot trace the folder structure.</div>}
+                {dependencies ? (
                 <section className="p-6 shadow-md w-full max-w-full m-2 text-center bg-white mb-2">
                     <h1 className="text-xl md:text-left font-medium p-2 my-2">Dependencies</h1>
-                            <div className="flex flex-wrap justify-between gap-2 my-2">
-                            {dependencies.dependencies.length > 0 ? (dependencies.dependencies.map((dependency) => <div key={dependency} className="p-2 bg-indigo-600 flex-grow text-white font-medium text-center text-sm rounded-sm">
-                                {dependency}
-                                </div> )) 
-                                : <div className="text-center w-full font-medium text-lg bg-red-200 p-2 my-2">No Dependencies found</div>
-                            }
-                            </div>
-                            <h1 className="text-xl md:text-left font-medium p-2 my-2">Dev Dependencies</h1>
-                            <div className="flex flex-wrap justify-between  gap-2 my-2">
-                            {dependencies.devDependencies.length > 0 ? (dependencies.devDependencies.map((dependency) => <div  key={dependency} className="p-2 flex-grow bg-slate-700 text-center text-sm font-medium text-white rounded-sm">
-                                {dependency}
-                                </div> )) 
-                                : <div className="text-center w-full font-medium text-lg bg-red-200 p-2">No Dev Dependencies found</div>
-                            }
-                            </div>
-                    </section>
+                    <div className="flex flex-wrap justify-between gap-2 my-2">
+                        {dependencies.dependencies && dependencies.dependencies.length > 0 ? (
+                            dependencies.dependencies.map((dependency) => (
+                                <div key={dependency} className="p-2 bg-indigo-600 flex-grow text-white font-medium text-center text-sm rounded-sm">
+                                    {dependency}
+                                </div>
+                            ))
+                        ) : (
+                            <div className="text-center w-full font-medium text-lg bg-red-200 p-2 my-2">No Dependencies found</div>
+                        )}
+                    </div>
+                    <h1 className="text-xl md:text-left font-medium p-2 my-2">Dev Dependencies</h1>
+                    <div className="flex flex-wrap justify-between gap-2 my-2">
+                        {dependencies.devDependencies && dependencies.devDependencies.length > 0 ? (
+                            dependencies.devDependencies.map((dependency) => (
+                                <div key={dependency} className="p-2 flex-grow bg-slate-700 text-center text-sm font-medium text-white rounded-sm">
+                                    {dependency}
+                                </div>
+                            ))
+                        ) : (
+                            <div className="text-center w-full font-medium text-lg bg-red-200 p-2">No Dev Dependencies found</div>
+                        )}
+                    </div>
+                </section>
+            ) : <div className="text-center font-medium text-lg bg-red-200 p-2 my-2">Cannot trace dependencies.</div>}          
                     </div>
                         
                 <div id="overflow" className="flex flex-col gap-3 max-w-full w-full flex-grow">
                     {/* Open Pull Requests */}
-                    {openPullRequests.length > 0 
+                    {openPullRequests && openPullRequests.length > 0 
                     ? <div className="mt-4 bg-white max-w-full text-black border border-slate-200 shadow-md p-4 m-2 overflow-auto">
                     <h2 className="text-2xl text-center self-center text-black font-semibold mb-2">Open Pull Requests</h2>
                     <Timeline horizontal className="mt-2 mx-2 grid grid-cols-2 md:grid-cols-5 gap-2 overflow-auto">
@@ -161,10 +171,10 @@ function RepoMap() {
                         }))}
 </Timeline>
 
-                    </div> : null }
+                    </div> : <div className="text-center font-medium text-lg bg-red-200 p-2 my-2">Cannot fetch open pull requests.</div> }
                     
                     {/* Closed Pull Requests */}
-                    {closedPullRequests.length > 0 
+                    {closedPullRequests && closedPullRequests.length > 0 
                     ? <div className="mt-4 bg-white max-w-full text-black border border-slate-200 shadow-md p-4 m-2 overflow-auto">
                     <h2 className="text-2xl text-center self-center text-black font-semibold mb-2">Closed Pull Requests</h2>
                     <Timeline horizontal className="mt-2 mx-2 grid grid-cols-2 md:grid-cols-5 gap-2 overflow-auto">
@@ -254,29 +264,29 @@ function RepoMap() {
                         }))}
 </Timeline>
 
-                    </div> : null}
+                    </div> : <div className="text-center  font-medium text-lg bg-red-200 p-2 my-2">Cannot fetch closed pull requests.</div>}
                     
                     <div className="flex flex-col gap-3 md:flex-row flex-grow">
                         {/* Open Issues */}
-                        {openIssues.length > 0 
+                        {openIssues && openIssues.length > 0 
                         ? <div className="max-w-4xl bg-white mt-4 mb-2 shadow-md flex-grow">
                         <h2 className="text-2xl pt-3 text-center self-center text-black font-semibold mb-2">Open Issues</h2>
                         {
                             openIssues ? (<KanbanBoard issues={openIssues} />) : <p className="text-center">No Open Issues yet.</p>
                         }
-                        </div> : null}
+                        </div> : <div className="text-center font-medium text-lg bg-red-200 p-2 my-2">Unable to fetch open issues.</div>}
                         
                         {/* Closed Issues */}
-                        {closedIssues.length > 0 
+                        {closedIssues && closedIssues.length > 0 
                         ? <div className="max-w-4xl bg-white mt-4 mb-2 shadow-md flex-grow">
                         <h2 className="text-2xl pt-3 text-center self-center text-black font-semibold mb-2">Closed Issues</h2>
                         {
                             closedIssues ? (<KanbanBoard issues={closedIssues} />) : <p className="text-center">No Closed Issues yet</p>
                         }
-                        </div> : null}
+                        </div> : <div className="text-center font-medium text-lg bg-red-200 p-2 my-2">Unable to fetch closed issues.</div>}
                         
                         {/* Commit History */}
-                        {commits.length > 0 
+                        {commits && commits.length > 0 
                         ? <div className="mt-4 bg-white text-black border border-slate-200 shadow-md p-4 m-2 overflow-auto flex-grow">
                         <h2 className="text-2xl text-center self-center text-black font-semibold mb-2">Commit History</h2>
                         <Timeline horizontal className="mt-2 mx-2">
@@ -336,7 +346,7 @@ function RepoMap() {
                                 </Timeline.Item>
                             )}))}
                         </Timeline>
-                    </div> : null}
+                    </div> : <div className="text-center font-medium text-lg bg-red-200 p-2 my-2">Unable to fetch commit history.</div>}
                     </div>
                 </div>
             </section>
